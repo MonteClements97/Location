@@ -6,7 +6,19 @@ Porpoise::Porpoise(Location location) : location(location){
     times_requested = 0;
     total_latitude = location.getLatitude();
     total_longitude = location.getLongitude();
-    std::cout << location << std::endl;
+    std::cout << "Porpoise intital sighting: ";
+    display_location();
+}
+
+Porpoise::~Porpoise() {
+    location.setLocation(0,0);
+    times_requested = 0;
+    total_latitude = 0;
+    total_longitude = 0;
+}
+
+bool Porpoise::compare_porpoise_pod(Porpoise * porpoise) {
+    return (location.distance(porpoise->location) <= 0.1);
 }
 
 bool Porpoise::compare_porpoise(Porpoise * porpoise){
@@ -29,4 +41,9 @@ bool Porpoise::check_location_equal(Porpoise * porpoise){
 void Porpoise::calculate_true_location(){
     location.setLocation(total_latitude/(times_requested+1), total_longitude/(times_requested+1));
 }
+
+void Porpoise::display_location(){
+    std::cout << location.getLatitude() << ' ' << location.getLongitude() << std::endl;
+}
+
 

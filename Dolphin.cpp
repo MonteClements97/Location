@@ -6,7 +6,19 @@ Dolphin::Dolphin(Location location) : location(location){
     times_requested = 0;
     total_latitude = location.getLatitude();
     total_longitude = location.getLongitude();
-    std::cout << location << std::endl;
+    std::cout << "Dolphin initial sighting: ";
+    display_location();
+}
+
+Dolphin::~Dolphin(){
+    location.setLocation(0,0);
+    times_requested = 0;
+    total_latitude = 0;
+    total_longitude = 0;
+}
+
+bool Dolphin::compare_dolphin_pod(Dolphin *dolphin) {
+    return (location.distance(dolphin->location) <= 0.1);
 }
 
 bool Dolphin::compare_dolphin(Dolphin * dolphin){
@@ -28,4 +40,8 @@ bool Dolphin::check_location_equal(Dolphin * dolphin){
 
 void Dolphin::calculate_true_location(){
     location.setLocation(total_latitude/(times_requested+1), total_longitude/(times_requested+1));
+}
+
+void Dolphin::display_location(){
+    std::cout << location.getLatitude() << ' ' << location.getLongitude() << std::endl;
 }
