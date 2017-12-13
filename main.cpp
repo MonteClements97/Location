@@ -160,30 +160,27 @@ int main() {
                     i--;
                 }
             }
-            if (animals_in_current_pod > 1){
-                dolphin_pod.push_back(current_dolphin);
-                fixed_dolphins.erase(fixed_dolphins.begin());
-                if(fixed_dolphins.size() != 0){
-                    current_dolphin = fixed_dolphins.front();
-                }
-            } else {
-                fixed_dolphins.erase(fixed_dolphins.begin());
-                delete current_dolphin;
+            dolphin_pod.push_back(current_dolphin);
+            fixed_dolphins.erase(fixed_dolphins.begin());
+            if(fixed_dolphins.size() != 0){
+                current_dolphin = fixed_dolphins.front();
+
+
             }
 
         }
-        if(animals_in_current_pod > 1){
-            total_pods++;
-            if (!there_are_pods){
-                std::cout << "Dolphin pods are as follows: " << std::endl;
-                there_are_pods = true;
-            }
-            std::cout << std::endl << "A dolphin pod containing " << animals_in_current_pod << " dolphins: " << std::endl;
-            for (int i = 0; i < dolphin_pod.size(); i++){
-                std::cout << "Dolphin location: ";
-                dolphin_pod[i]->display_location();
-            }
+
+        total_pods++;
+        if (!there_are_pods){
+            std::cout << "Dolphin pods are as follows: " << std::endl;
+            there_are_pods = true;
         }
+        std::cout << std::endl << "A dolphin pod containing " << animals_in_current_pod << " dolphin(s): " << std::endl;
+        for (int i = 0; i < dolphin_pod.size(); i++){
+            std::cout << "Dolphin location: ";
+            dolphin_pod[i]->display_location();
+        }
+
 
 
     }
@@ -230,7 +227,7 @@ int main() {
                 std::cout << std::endl << "Porpoise pods are as follows: " << std::endl;
                 there_are_pods = true;
             }
-            std::cout << std::endl << "A porpoise pod containing " << animals_in_current_pod << " porpoises"<< std::endl;
+            std::cout << std::endl << "A porpoise pod containing " << animals_in_current_pod << " porpoise(s): "<< std::endl;
             for (int i = 0; i < porpoise_pod.size(); i++){
                 std::cout << "Porpoise location: ";
                 porpoise_pod[i]->display_location();
@@ -240,7 +237,11 @@ int main() {
 
     }
 
-    std::cout << "There are a total of " << total_pods << " pods" << std::endl;
+    std::cout << std::endl << "There are a total of " << total_pods << " pods" << std::endl;
 
-    return 115;
+    //Just in case the terminal tries to close before you can read the information given
+    std::cout << "Press enter to end the program ";
+    std::cin >> file_name;
+
+    return 0;
 }

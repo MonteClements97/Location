@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Location.h"
 #include "Dolphin.h"
 
@@ -43,5 +44,6 @@ void Dolphin::calculate_true_location(){
 }
 
 void Dolphin::display_location(){
-    std::cout << location.getLatitude() << ' ' << location.getLongitude() << std::endl;
+    std::cout << std::setprecision(8) << location.getLatitude() << ' ';
+    std::cout << std::setprecision(7) << location.getLongitude() << std::endl;
 }

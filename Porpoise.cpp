@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Location.h"
 #include "Porpoise.h"
 
@@ -6,7 +7,7 @@ Porpoise::Porpoise(Location location) : location(location){
     times_requested = 0;
     total_latitude = location.getLatitude();
     total_longitude = location.getLongitude();
-    std::cout << "Porpoise intital sighting: ";
+    std::cout << "Porpoise initial sighting: ";
     display_location();
 }
 
@@ -43,7 +44,8 @@ void Porpoise::calculate_true_location(){
 }
 
 void Porpoise::display_location(){
-    std::cout << location.getLatitude() << ' ' << location.getLongitude() << std::endl;
+    std::cout << std::setprecision(8) << location.getLatitude() << ' ';
+    std::cout << std::setprecision(7) << location.getLongitude() << std::endl;
 }
 
 
